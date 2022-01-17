@@ -11,7 +11,6 @@ const sYouTube = document.getElementById('youtube')
 const sBilibili = document.getElementById("bilibili");
 const sYingshi = document.getElementById("yingshi");
 const sWangpan = document.getElementById("wangpan");
-const sBt = document.getElementById("bt");
 const sFanyi = document.getElementById("fanyi");
 
 
@@ -160,14 +159,6 @@ sWangpan.onclick = function () {
     doAction(p,n,s);
 }
 
-//BT
-sBt.onclick = function () {
-    p='https://www.bturl.cc/search/';
-    n='_ctime_1.html';
-    s='https://www.bturl.cc'
-    doAction(p,n,s);
-}
-
 //翻译
 sFanyi.onclick = function (){
     p='https://fanyi.baidu.com/#auto/zh/';
@@ -175,11 +166,4 @@ sFanyi.onclick = function (){
     s='https://fanyi.baidu.com/';
     doAction(p,n,s);
 }
-console.log("                                  ");
-console.log("   - 欢迎来到Morey的个人导航 -     ");
-console.log("===============================");
-console.log("                          ");
-console.log("       老哥，你好啊~      ");
-console.log("                          ");
-console.log("===============================")
 

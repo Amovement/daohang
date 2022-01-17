@@ -51,6 +51,7 @@ body {
 }
 .ui.button{
     margin-top: 1em;
+    color:#000000;
 }
 .prompt{
     width: 60em;
