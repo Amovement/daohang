@@ -153,42 +153,6 @@
 <!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
 <script>
-function GetQueryString(name)
-{
-  var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-  var r = window.location.search.substr(1).match(reg);
-  if(r!=null)return  unescape(r[2]); return null;
-}
-
-$(document).ready(function () {
-  let get_id=parseInt(GetQueryString("id"));
-  if(get_id !=null)
-  {
-    let data = {};
-    data["id"] = get_id;
-    $.ajax({
-      type: "POST",
-      url: "http://1.116.45.49:5233/box/get",
-      contentType: "application/json;charset=utf-8",
-      data:JSON.stringify(data),
-      dataType: "json",
-      success:function (message) {
-          let get_data = message.data;
-          console.log(get_data);
-          $("#UpdatedAt").text(get_data.UpdatedAt);
-          $("#Password").text(get_data.Password);
-          $("#Title").text(get_data.Title);
-          $("#Url").text(get_data.Url);
-          $("#Username").text(get_data.Username);
-          $("#Description").text(get_data.Description);
-          
-      },
-      error:function (message) {
-          alert("提交失败"+JSON.stringify(message));
-      }
-    });
-  }
-});
 
 $("#aesBtn").click(function(){
   var desKey = $("#aeskey").val();
