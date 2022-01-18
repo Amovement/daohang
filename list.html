@@ -111,29 +111,10 @@
             data:JSON.stringify(data),
             dataType: "json",
             success:function (message) {
-                let json_data = JSON.stringify(message);
-                let len = message.data.length;
-                for(let i=0;i<len;i++){
-                  let n_data = message.data[i];
-                  let html_str = "";
-                  html_str += "<tr><td><input type='checkbox' /></td>";
-                  html_str += "<td>"+n_data.ID+"</td>";
-                  html_str += "<td><a href='box.html?id="+n_data.ID+"'>"+n_data.Title+"</a></td>";
-                  html_str += "<td>"+n_data.Tag+"</td>";
-                  html_str += "<td>"+"</td>";
-                  html_str += "<td>"+"</td>";
-                  html_str += "<td>"+"</td>";
-                  html_str += "<td class='am-hide-sm-only'>"+n_data.BelongTo+"</td>";
-                  html_str += "<td class='am-hide-sm-only'>"+n_data.UpdatedAt+"</td>";
-                  html_str += "<td>";
-                  html_str += "<div class='am-btn-toolbar'>";
-                  html_str += "<div class='am-btn-group am-btn-group-xs'>";
-                  html_str += "<button class='am-btn am-btn-default am-btn-xs am-text-secondary'><a href='box.html?id="+n_data.ID+"'><span class='am-icon-pencil-square-o'></span> 查看</a></button>";
-                  html_str += "</div>";
-                  html_str += "</div>";
-                  html_str += "</td>";
-                  html_str += "</tr>";
-                  $("#table_body").append(html_str);
+                if (message.data.code==200){
+                  alert("创建成功")
+                }else {
+                  alert("提交失败"+JSON.stringify(message));
                 }
                 
             },
