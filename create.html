@@ -77,17 +77,61 @@
   <div class="am-u-md-8">
     <article class="blog-main">
       <h3 class="am-article-title blog-title">
-        <span id='Title'></span>
+        <span id=''>Create Box</span>
       </h3>
-      <h4 class="am-article-meta blog-meta">by open posted on <span id='UpdatedAt'></span> </h4>
+      
 
       <div class="am-g blog-content">
         <div class="am-u-lg-7">
-          <p><b>Url:</b>&nbsp;&nbsp;<span id='Url'></span> </p>
+          <div class="am-form am-form-horizontal">
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="text" id="BelongTo" value="amove" placeholder="BelongTo" disabled>
+              </div>
+            </div>
 
-          <p><b>Username:</b>&nbsp;&nbsp;<span id="Username"></span> </p>
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="text" id="Title" placeholder="Title">
+              </div>
+            </div>
 
-          <p><b>Password:</b>&nbsp;&nbsp;<span id="Password"></span> </p>
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="text" id="URL" placeholder="URL">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="text" id="Username" placeholder="Username">
+              </div>
+            </div>
+          
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="password" id="Password" placeholder="Password">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="password" id="Token" placeholder="Token">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <div class="am-u-sm-12">
+                <input type="text" id="Description" placeholder="Description">
+              </div>
+            </div>
+          
+            <div class="am-form-group">
+              <div class="am-u-sm-10 am-u-sm-offset-2">
+                <button class="am-btn am-btn-default" id='subBtn'>Submit</button>
+              </div>
+            </div>
+          </div>
 
           
         </div>
@@ -95,11 +139,7 @@
           <p><img src="https://s4.ax1x.com/2022/01/14/73bdm9.png"></p>
         </div>
       </div>
-      <div class="am-g">
-        <div class="am-u-sm-12">
-          <p><b>Description:</b><span id="Description"></span> </p>
-        </div>
-      </div>
+      
     </article>
 
     <hr class="am-article-divider blog-hr">
@@ -108,14 +148,11 @@
   <div class="am-u-md-4 blog-sidebar">
     <div class="am-panel-group">
       <section class="am-panel am-panel-default">
-        <div class="am-panel-hd">Decrypt</div>
+        <div class="am-panel-hd">Encrypt</div>
         <div class="am-panel-bd">
           <p></p>
             <div class="am-input-group am-input-group-sm">
               <input type="text" id='aeskey' class="am-form-field">
-            <span class="am-input-group-btn">
-              <button class="am-btn am-btn-default" id='aesBtn' type="button">Do</button>
-            </span>
             </div>
         </div>
       </section>
@@ -125,7 +162,7 @@
         <div class="am-panel-hd">You should know</div>
         <div class="am-panel-bd">
           <ul class=" blog-team">
-            <li>The message encrypt by DES</li>
+            <li>The message should be encrypt</li>
           </ul>
         </div>
       </section>
@@ -154,24 +191,53 @@
 <script src="assets/js/amazeui.min.js"></script>
 <script>
 
-$("#aesBtn").click(function(){
+$("#subBtn").click(function(){
   var desKey = $("#aeskey").val();
-  var message = $("#Url").text();
-  var decrypttxt = decryptDes(message,desKey);
-  $("#Url").text(decrypttxt);
+  if(desKey===""){
+    alert('Des Key Needed!');
+    return;
+  }
+  
+  var message = $("#Url").val();
+  var Url = encryptDes(message,desKey);
 
-  message = $("#Username").text();
-  decrypttxt = decryptDes(message,desKey);
-  $("#Username").text(decrypttxt);
+  message = $("#Username").val();
+  var Username = encryptDes(message,desKey);
 
-  message = $("#Password").text();
-  decrypttxt = decryptDes(message,desKey);
-  $("#Password").text(decrypttxt);
+  message = $("#Password").val();
+  var Password = encryptDes(message,desKey);
 
-  message = $("#Description").text();
-  decrypttxt = decryptDes(message,desKey);
-  $("#Description").text(decrypttxt);
+  message = $("#Description").val();
+  var Description = encryptDes(message,desKey);
 
+  var Title = $("#Title").val();
+  var Token = $("#Token").val();
+  var BelongTo = $("#BelongTo").val();
+  //console.log(Url,Username,Password,Description);
+  let boxdata = {};
+  boxdata["Url"] = Url;
+  boxdata["Username"] = Username;
+  boxdata["Password"] = Password;
+  boxdata["Description"] = Description;
+  boxdata["BelongTo"] = BelongTo;
+  boxdata["Title"] = Title;
+  let data = {};
+  data["Token"] = Token;
+  data["Box"] = boxdata;
+  $.ajax({
+      type: "POST",
+      url: "http://1.116.45.49:5233/box/create",
+      contentType: "application/json;charset=utf-8",
+      data:JSON.stringify(data),
+      dataType: "json",
+      success:function (message) {
+          let get_data = message.data;
+          console.log(get_data);
+      },
+      error:function (message) {
+          alert("提交失败"+JSON.stringify(message));
+      }
+  });
 });
 
 

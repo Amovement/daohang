@@ -41,7 +41,7 @@
         <div class="am-u-sm-12 am-u-md-6">
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+              <button type="button" class="am-btn am-btn-default"><a href='create.html' ><span class="am-icon-plus"></span> 新增</a></button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
             </div>
           </div>
@@ -118,7 +118,7 @@
                   let html_str = "";
                   html_str += "<tr><td><input type='checkbox' /></td>";
                   html_str += "<td>"+n_data.ID+"</td>";
-                  html_str += "<td><a href='#'>"+n_data.Title+"</a></td>";
+                  html_str += "<td><a href='box.html?id="+n_data.ID+"'>"+n_data.Title+"</a></td>";
                   html_str += "<td>"+n_data.Tag+"</td>";
                   html_str += "<td>"+"</td>";
                   html_str += "<td>"+"</td>";
