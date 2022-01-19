@@ -231,8 +231,11 @@ $("#subBtn").click(function(){
       data:JSON.stringify(data),
       dataType: "json",
       success:function (message) {
-          let get_data = message.data;
-          console.log(get_data);
+          if (message.data.code==200){
+            alert("创建成功")
+          }else {
+            alert("提交失败"+JSON.stringify(message));
+          }
       },
       error:function (message) {
           alert("提交失败"+JSON.stringify(message));
