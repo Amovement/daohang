@@ -11,6 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="editor.md/css/editormd.preview.css" />
   <style>
     @media only screen and (min-width: 1200px) {
       .blog-g-fixed {
@@ -97,7 +98,7 @@
       </div>
       <div class="am-g">
         <div class="am-u-sm-12">
-          <p><b>Description:</b><span id="Description"></span> </p>
+          <p><b>Description:</b><div id="Description"></div> </p>
         </div>
       </div>
     </article>
@@ -152,6 +153,9 @@
 <script src='js/mycrypto.js'></script>
 <!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="editor.md/editormd.js"></script>
+<script src="editor.md/lib/marked.min.js"></script>
+<script src="editor.md/lib/prettify.min.js"></script>
 <script>
 function GetQueryString(name)
 {
@@ -181,7 +185,6 @@ $(document).ready(function () {
           $("#Url").text(get_data.Url);
           $("#Username").text(get_data.Username);
           $("#Description").text(get_data.Description);
-          
       },
       error:function (message) {
           alert("提交失败"+JSON.stringify(message));
@@ -204,13 +207,22 @@ $("#aesBtn").click(function(){
   decrypttxt = decryptDes(message,desKey);
   $("#Password").text(decrypttxt);
 
+  desKey = $("#aeskey").val();
   message = $("#Description").text();
+  $("#Description").text("");
   decrypttxt = decryptDes(message,desKey);
-  $("#Description").text(decrypttxt);
+  $(function() {
+      var editor = editormd.markdownToHTML("Description", {
+          // width: "100%",
+          //height: "800px",
+          markdown: decrypttxt,     // dynamic set Markdown text
+          //path : "editor.md/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+      });
+  });
 
 });
-
-
 </script>
+
+
 </body>
 </html>
