@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Amove | Box</title>
+  <title>Amove | Notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
@@ -69,7 +69,7 @@
 <body>
   <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-topbar-brand">
-      <strong><a href="list.html">Password Box</a></strong>  
+      <strong><a href="list.html">Notes</a></strong>  
     </div>
   </header>
 
@@ -77,7 +77,7 @@
   <div class="am-u-md-8">
     <article class="blog-main">
       <h3 class="am-article-title blog-title">
-        <span id=''>Create Box</span>
+        <span id=''>Create Notes</span>
       </h3>
       
 
@@ -86,31 +86,13 @@
           <div class="am-form am-form-horizontal">
             <div class="am-form-group">
               <div class="am-u-sm-12">
-                <input type="text" id="BelongTo" value="pwd_box" placeholder="BelongTo" disabled>
+                <input type="text" id="BelongTo" value="notes" placeholder="BelongTo" disabled>
               </div>
             </div>
 
             <div class="am-form-group">
               <div class="am-u-sm-12">
                 <input type="text" id="Title" placeholder="Title">
-              </div>
-            </div>
-
-            <div class="am-form-group">
-              <div class="am-u-sm-12">
-                <input type="text" id="Url" placeholder="Url">
-              </div>
-            </div>
-
-            <div class="am-form-group">
-              <div class="am-u-sm-12">
-                <input type="text" id="Username" placeholder="Username">
-              </div>
-            </div>
-          
-            <div class="am-form-group">
-              <div class="am-u-sm-12">
-                <input type="password" id="Password" placeholder="Password">
               </div>
             </div>
 
@@ -145,35 +127,10 @@
     <hr class="am-article-divider blog-hr">
   </div>
 
-  <div class="am-u-md-4 blog-sidebar">
-    <div class="am-panel-group">
-      <section class="am-panel am-panel-default">
-        <div class="am-panel-hd">Encrypt</div>
-        <div class="am-panel-bd">
-          <p></p>
-            <div class="am-input-group am-input-group-sm">
-              <input type="text" id='aeskey' class="am-form-field">
-            </div>
-        </div>
-      </section>
-      
-
-      <section class="am-panel am-panel-default">
-        <div class="am-panel-hd">You should know</div>
-        <div class="am-panel-bd">
-          <ul class=" blog-team">
-            <li>The message should be encrypt</li>
-            <li><a href="mk.html" target="_blank">Markdown</a></li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
-
 </div>
 
 <footer class="blog-footer">
-  <p>Password Box<br/>
+  <p>Notes<br/>
     <small>© Copyright amove.</small>
   </p>
 </footer>
@@ -199,26 +156,14 @@ $("#subBtn").click(function(){
     return;
   }
   
-  var message = $("#Url").val();
-  var Url = encryptDes(message,desKey);
-
-  message = $("#Username").val();
-  var Username = encryptDes(message,desKey);
-
-  message = $("#Password").val();
-  var Password = encryptDes(message,desKey);
-
   message = $("#Description").val();
-  var Description = encryptDes(message,desKey);
+  var Description = message;
 
   var Title = $("#Title").val();
   var Token = $("#Token").val();
   var BelongTo = $("#BelongTo").val();
   //console.log(Url,Username,Password,Description);
   let boxdata = {};
-  boxdata["Url"] = Url;
-  boxdata["Username"] = Username;
-  boxdata["Password"] = Password;
   boxdata["Description"] = Description;
   boxdata["BelongTo"] = BelongTo;
   boxdata["Title"] = Title;
@@ -238,7 +183,7 @@ $("#subBtn").click(function(){
           }else {
             alert("提交失败"+JSON.stringify(message));
           }
-          location.href="list.html";
+          location.href="list_notes.html";
       },
       error:function (message) {
           alert("提交失败"+JSON.stringify(message));
